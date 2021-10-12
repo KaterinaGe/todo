@@ -96,7 +96,8 @@ label:hover:after {
     left: 20%;
     top: 30%;
     z-index: 2;
-    background: whitesmoke;
+    background: black;
+    color: white;
 }
 
 label:before {
@@ -119,6 +120,7 @@ input:disabled + label:before {
 .text {
     margin-left: -150px;
     margin-top: 10px;
+    z-index: -1;
 }
 
 .date {
@@ -137,9 +139,11 @@ input:disabled + label:before {
 
 .remove:hover::after {
     content: attr(data-tooltip);
+    position: absolute;
     font-size: 25px;
-    z-index: 2;
-    background: whitesmoke;
+    z-index: 3;
+    background: black;
+    color: white;
 }
 
 .trash {
