@@ -15,84 +15,92 @@
 
         <h1 class="h1"> ToDo </h1>
 
-        <input type="text" class="input" placeholder="I want to...">
+        <div class="enter">
+            <input type="text" class="input" placeholder="I want to...">
+        </div>
         
-        <li class="sort">
-            <button class="status"> All </button>
-            <button class="status"> Done </button>
-            <button class="status"> Undone </button>
+        <div class="button">
+            <li class="sort">
+                <button class="status"> All </button>
+                <button class="status"> Done </button>
+                <button class="status"> Undone </button>
 
-            <p class="lettering"> Sort by Date </p>
+                <p class="lettering"> Sort by Date </p>
 
-            <button class="arrow"> 
-                <img src="top.png" class="arrow-img"> 
-            </button>
-            <button class="arrow">
-                <img src="button.png" class="arrow-img"> 
-            </button>
-        </li>
-
-        <ul class="todo-list">
-            <li class="task">
-                <input class="check" id="check" type="checkbox">
-                <label for="check" data-tooltip="Check"></label>
-                <p class="text"> Do something </p>
-                <p class="date"> 12/10/2020 </p>
-                <button class="remove" data-tooltip="Remove">
-                    <img src="trash.png" class="trash">
+                <button class="arrow"> 
+                    <img src="top.png" class="arrow-img"> 
+                </button>
+                <button class="arrow">
+                    <img src="button.png" class="arrow-img"> 
                 </button>
             </li>
+        </div>
+        
+        <div class="tasks">
+            <ul class="todo-list">
+                <li class="task">
+                    <input class="check" id="check" type="checkbox">
+                    <label for="check" data-tooltip="Check"></label>
+                    <p class="text"> Do something </p>
+                    <p class="date"> 12/10/2020 </p>
+                    <button class="remove" data-tooltip="Remove">
+                        <img src="trash.png" class="trash">
+                    </button>
+                </li>
 
-            <li class="task"> 
-                <input class="check" id="check2" type="checkbox">
-                <label for="check2" data-tooltip="Check"></label>
-                <p class="text"> Do more </p>
-                <p class="date"> 12/10/2020 </p>
-                <button class="remove" data-tooltip="Remove">
-                    <img src="trash.png" class="trash">
-                </button>
-            </li>
+                <li class="task"> 
+                    <input class="check" id="check2" type="checkbox">
+                    <label for="check2" data-tooltip="Check"></label>
+                    <p class="text"> Do more </p>
+                    <p class="date"> 12/10/2020 </p>
+                    <button class="remove" data-tooltip="Remove">
+                        <img src="trash.png" class="trash">
+                    </button>
+                </li>
 
-            <li class="task"> 
-                <input class="check" id="check3" type="checkbox">
-                <label for="check3" data-tooltip="Check"></label>
-                <p class="text"> Learn React </p>
-                <p class="date"> 12/10/2020 </p>
-                <button class="remove" data-tooltip="Remove">
-                    <img src="trash.png" class="trash">
-                </button>
-            </li>
+                <li class="task"> 
+                    <input class="check" id="check3" type="checkbox">
+                    <label for="check3" data-tooltip="Check"></label>
+                    <p class="text"> Learn React </p>
+                    <p class="date"> 12/10/2020 </p>
+                    <button class="remove" data-tooltip="Remove">
+                        <img src="trash.png" class="trash">
+                    </button>
+                </li>
 
-            <li class="task">
-                <input class="check" id="check4" type="checkbox">
-                <label for="check4" data-tooltip="Check"></label>
-                <p class="text">7WTZ o_O </p>
-                <p class="date"> 12/10/2020 </p>
-                <button class="remove" data-tooltip="Remove">
-                    <img src="trash.png" class="trash">
-                </button>
-            </li>
+                <li class="task">
+                    <input class="check" id="check4" type="checkbox">
+                    <label for="check4" data-tooltip="Check"></label>
+                    <p class="text">7WTZ o_O </p>
+                    <p class="date"> 12/10/2020 </p>
+                    <button class="remove" data-tooltip="Remove">
+                        <img src="trash.png" class="trash">
+                    </button>
+                </li>
 
-            <li class="task"> 
-                <input class="check" id="check5" type="checkbox">
-                <label for="check5" data-tooltip="Check"></label>
-                <p class="text"> Authorization </p>
-                <p class="date"> 12/10/2020 </p>
-                <button class="remove" data-tooltip="Remove">
-                    <img src="trash.png" class="trash">
-                </button>
-            </li>
-        </ul>
+                <li class="task"> 
+                    <input class="check" id="check5" type="checkbox">
+                    <label for="check5" data-tooltip="Check"></label>
+                    <p class="text"> Authorization </p>
+                    <p class="date"> 12/10/2020 </p>
+                    <button class="remove" data-tooltip="Remove">
+                        <img src="trash.png" class="trash">
+                    </button>
+                </li>
+            </ul>
+        </div>
 
-        <ul class="pages">
-            <button class="page"> << </button>
-            <button class="page"> 1 </button>
-            <button class="page-highlight"> 2 </button>
-            <button class="page"> 3 </button>
-            <button class="page"> 4 </button>
-            <button class="page"> 5 </button>
-            <button class="page"> >> </button>
-        </ul>
+        <div class="all-pages">
+            <ul class="pages">
+                <button class="page"> << </button>
+                <button class="page"> 1 </button>
+                <button class="page-highlight"> 2 </button>
+                <button class="page"> 3 </button>
+                <button class="page"> 4 </button>
+                <button class="page"> 5 </button>
+                <button class="page"> >> </button>
+            </ul>
+        </div>
 
     </div>
 

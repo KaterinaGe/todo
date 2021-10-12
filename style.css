@@ -9,19 +9,29 @@
     font-size: 50px;
 }
 
+.enter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .input {
     height: inherit;
     width: 400px;
     display: flex;
-    margin-left: 40%;
     margin-bottom: 20px;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .sort {
     width: 500px;
     height: 40px;
     display: flex;
-    margin-left: 37%;
     border-color: none;
 }
 
@@ -48,6 +58,7 @@
     width: 30px;
     border-color: white;
     background-color: white;
+    border: 0;
 }
 
 .arrow:hover {
@@ -57,8 +68,18 @@
 .arrow-img {
     height: 30px;
     width: 30px;
-    margin-left: -8px;
-    margin-top: -3px;
+    margin-left: -6px;
+    margin-top: -1px;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo-list {
+    padding-left: 0;
 }
 
 .task {
@@ -67,7 +88,6 @@
     display: flex;
     border: solid;
     overflow: hidden;
-    margin-left: 35.5%;
     margin-top: 10px;
     justify-content: space-between;
 }
@@ -131,10 +151,12 @@ input:disabled + label:before {
 .remove {
     border-color: white;
     background-color: white;
+    border: 0;
 }
 
 .remove:hover {
     background: rgb(209, 209, 209);
+    border-color: white;
 } 
 
 .remove:hover::after {
@@ -144,6 +166,8 @@ input:disabled + label:before {
     z-index: 3;
     background: black;
     color: white;
+    border-color: white;
+    outline: none;
 }
 
 .trash {
@@ -152,8 +176,14 @@ input:disabled + label:before {
     margin-top: 7px;
 }
 
+.all-pages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .pages {
-    margin-left: 39%;
+    padding-left: 0;
 }
 
 .page {
@@ -165,6 +195,13 @@ input:disabled + label:before {
 
 .page:hover {
     background: rgb(209, 209, 209);
+    margin-bottom: 3px;
+} 
+
+.page:active {
+    background: rgb(143, 143, 143);
+    margin-bottom: 3px;
+    
 } 
 
 .page-highlight {
