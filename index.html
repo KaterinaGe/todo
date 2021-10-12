@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="todo">
+
+        <h1 class="h1"> ToDo </h1>
+
+        <input type="text" class="input" placeholder="I want to...">
+        
+        <li class="sort">
+            <button class="status"> All </button>
+            <button class="status"> Done </button>
+            <button class="status"> Undone </button>
+
+            <p class="lettering"> Sort by Date </p>
+
+            <button class="arrow"> 
+                <img src="top.png" class="arrow-img"> 
+            </button>
+            <button class="arrow">
+                <img src="button.png" class="arrow-img"> 
+            </button>
+        </li>
+
+        <ul class="todo-list">
+            <li class="task">
+                <input class="check" id="check" type="checkbox">
+                <label for="check" data-tooltip="Check"></label>
+                <p class="text"> Do something </p>
+                <p class="date"> 12/10/2020 </p>
+                <button class="remove" data-tooltip="Remove">
+                    <img src="trash.png" class="trash">
+                </button>
+            </li>
+
+            <li class="task"> 
+                <input class="check" id="check" type="checkbox">
+                <label for="check" data-tooltip="Check"></label>
+                <p class="text"> Do more </p>
+                <p class="date"> 12/10/2020 </p>
+                <button class="remove" data-tooltip="Remove">
+                    <img src="trash.png" class="trash">
+                </button>
+            </li>
+
+            <li class="task"> 
+                <input class="check" id="check" type="checkbox">
+                <label for="check" data-tooltip="Check"></label>
+                <p class="text"> Learn React </p>
+                <p class="date"> 12/10/2020 </p>
+                <button class="remove" data-tooltip="Remove">
+                    <img src="trash.png" class="trash">
+                </button>
+            </li>
+
+            <li class="task">
+                <input class="check" id="check" type="checkbox">
+                <label for="check" data-tooltip="Check"></label>
+                <p class="text">7WTZ o_O </p>
+                <p class="date"> 12/10/2020 </p>
+                <button class="remove" data-tooltip="Remove">
+                    <img src="trash.png" class="trash">
+                </button>
+            </li>
+
+            <li class="task"> 
+                <input class="check" id="check" type="checkbox">
+                <label for="check" data-tooltip="Check"></label>
+                <p class="text"> Authorization </p>
+                <p class="date"> 12/10/2020 </p>
+                <button class="remove" data-tooltip="Remove">
+                    <img src="trash.png" class="trash">
+                </button>
+            </li>
+        </ul>
+
+        <ul class="pages">
+            <button class="page"> << </button>
+            <button class="page"> 1 </button>
+            <button class="page-highlight"> 2 </button>
+            <button class="page"> 3 </button>
+            <button class="page"> 4 </button>
+            <button class="page"> 5 </button>
+            <button class="page"> >> </button>
+        </ul>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

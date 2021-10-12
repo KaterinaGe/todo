@@ -1,0 +1,175 @@
+*{
+    font-family: 'Architects Daughter', cursive;
+    color: rgb(82, 82, 92);
+    font-size: 20px;
+}
+
+.h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+.input {
+    height: inherit;
+    width: 400px;
+    display: flex;
+    margin-left: 40%;
+    margin-bottom: 20px;
+}
+
+.sort {
+    width: 500px;
+    height: 40px;
+    display: flex;
+    margin-left: 37%;
+    border-color: none;
+}
+
+.status {
+    height: 40px;
+    margin-right: 10px;
+    background-color: white;
+}
+
+.status:hover {
+    background: rgb(209, 209, 209);
+} 
+
+.lettering {
+    margin-top: 5px;
+    margin-left: 80px;
+    height: 30px;
+}
+
+.arrow {
+    margin-top: 5px;
+    margin-left: 15px;
+    height: 30px;
+    width: 30px;
+    border-color: white;
+    background-color: white;
+}
+
+.arrow:hover {
+    background: rgb(209, 209, 209);
+} 
+
+.arrow-img {
+    height: 30px;
+    width: 30px;
+    margin-left: -8px;
+    margin-top: -3px;
+}
+
+.task {
+    width: 500px;
+    height: 44px;
+    display: flex;
+    border: solid;
+    overflow: hidden;
+    margin-left: 35.5%;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+label {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    margin-top: 5px;
+    margin-left: 10px;
+    border: solid;
+    border-radius: 25px;
+}
+
+label:hover {
+    background: rgb(209, 209, 209);
+} 
+
+label:hover:after {
+    content: attr(data-tooltip);
+    font-size: 25px;
+    left: 20%;
+    top: 30%;
+    z-index: 2;
+    background: whitesmoke;
+}
+
+label:before {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    margin-top: 7px;
+    margin-left: 10px;
+} 
+
+input:checked + label:before {
+    content: "V";
+    color: rgb(38, 38, 41);
+}
+
+input:disabled + label:before {
+    background: white;
+}
+
+.text {
+    margin-left: -150px;
+    margin-top: 10px;
+}
+
+.date {
+    margin-right: -150px;
+    margin-top: 10px;
+}
+
+.remove {
+    border-color: white;
+    background-color: white;
+}
+
+.remove:hover {
+    background: rgb(209, 209, 209);
+} 
+
+.remove:hover::after {
+    content: attr(data-tooltip);
+    font-size: 25px;
+    z-index: 2;
+    background: whitesmoke;
+}
+
+.trash {
+    height: 30px;
+    width: 30px;
+    margin-top: 7px;
+}
+
+.pages {
+    margin-left: 39%;
+}
+
+.page {
+    background-color: white;
+    height: 40px;
+    width: 40px;
+    font-size: 30px;
+}
+
+.page:hover {
+    background: rgb(209, 209, 209);
+} 
+
+.page-highlight {
+    background-color: rgb(139, 139, 139);
+    height: 40px;
+    width: 40px;
+    font-size: 30px;
+}
+
+.page-highlight:hover {
+    background: rgb(209, 209, 209);
+} 
