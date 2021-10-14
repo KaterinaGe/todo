@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
 *{
   font-family: 'Architects Daughter', cursive;
   color: rgb(82, 82, 92);
   font-size: 20px;
 }
 
-.todo {
+.app {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,11 +17,23 @@
   font-size: 50px;
 }
 
-.input {
-  height: inherit;
-  width: 400px;
+.enter{
   display: flex;
+  align-items: center;
+}
+
+.input {
+  display: flex;
+  cursor: pointer;
   margin-bottom: 20px;
+  box-shadow: 10px 10px 3px 1px rgb(201, 201, 201)
+}
+
+.save {
+  margin-top: -20px;
+  margin-left: 10px;
+  background-color: white;
+  cursor: pointer;
   box-shadow: 10px 10px 3px 1px rgb(201, 201, 201)
 }
 
@@ -76,13 +90,15 @@
 
 .task {
   width: 500px;
-  height: 44px;
   display: flex;
-  border: solid;
-  overflow: hidden;
-  margin-top: 10px;
   justify-content: space-between;
+  border: solid;
+  margin-top: 10px;
   box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
+}
+
+.tasks {
+  margin-top: 10px;
 }
 
 input[type="checkbox"] {
@@ -141,6 +157,7 @@ input:disabled + label:before {
 }
 
 .remove {
+  width: 30px;
   border-color: white;
   background-color: white;
   border: 0;

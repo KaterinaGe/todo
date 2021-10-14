@@ -1,13 +1,46 @@
 import React from "react";
+import { useState } from 'react';
+import Task from "./Task";
+import TodoList from "./TodoList";
 
 function App() {
+  const [todos, setTodos] = useState([])
+
+  const addTask = (userInput) => {
+    if(userInput) {
+      const newItem = {
+        id: Math.random().toString(36).substr(2,9),
+        task: userInput,
+        complete: false
+      }
+      setTodos([...todos, newItem])
+    }
+  }
+
+  const removeTask = (id) => {
+    setTodos([...todos.filter((todo) => todo.id !== id)])
+  }
+
   return (
-    <div className="App">
-      <div className="todo">
-
-        <h1 className="h1"> ToDo </h1>
-
-        <input type="text" className="input" placeholder="I want to..."/>
+    <div className="app">
+      <header>
+        <h1 className="h1">ToDo {todos.length}</h1>
+      </header>
+      <TodoList addTask={addTask} />
+      {todos.map((todo) => {
+        return (
+          <Task
+            todo={todo}
+            key={todo.id}
+            removeTask={removeTask}
+            className="tasks"
+            />
+        )
+      })}
+    </div>
+  );
+        
+        {/* <input type="text" className="input" placeholder="I want to..."/>
 
         <li className="sort">
           <button className="status"> All </button>
@@ -84,11 +117,7 @@ function App() {
           <button className="page"> 4 </button>
           <button className="page"> 5 </button>
           <button className="page">  </button>
-        </ul>
-      </div>
-
-    </div>
-  );
+        </ul> */}
 }
 
 export default App;
