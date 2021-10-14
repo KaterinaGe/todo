@@ -1,14 +1,14 @@
-function Task({ todo, date, removeTask }) {
+function Task({ todo, removeTask }) {
     return (
         <div key={todo.id} className="task">
             <div>
-                <label>
+                <button>
                     <input 
                         type="checkbox" 
-                        id={Math.random().toString(36).substr(2,9)} 
+                        id={Math.random().toString(36).substr(2,9)}
                         className="check"
                     />
-                </label>
+                </button>
             </div>
             <div>
                 {todo.task}
@@ -16,9 +16,9 @@ function Task({ todo, date, removeTask }) {
             <div>
                 {(new Date()).toLocaleString()}
             </div>
-            <div className="remove" onClick={() => removeTask(todo.id)}>
+            <button className="remove" onClick={() => removeTask(todo.id)}>
                 X
-            </div>
+            </button>
         </div>
     )
 }

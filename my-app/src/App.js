@@ -9,6 +9,7 @@ function App() {
   const addTask = (userInput) => {
     if(userInput) {
       const newItem = {
+        done: false,
         id: Math.random().toString(36).substr(2,9),
         task: userInput,
         complete: false
@@ -24,9 +25,12 @@ function App() {
   return (
     <div className="app">
       <header>
-        <h1 className="h1">ToDo {todos.length}</h1>
+        <h1 className="h1">ToDo</h1>
       </header>
-      <TodoList addTask={addTask} />
+      <div className="add">
+        <p className="sum">{todos.length} tasks</p>
+        <TodoList addTask={addTask} />
+      </div>
       {todos.map((todo) => {
         return (
           <Task
@@ -34,7 +38,7 @@ function App() {
             key={todo.id}
             removeTask={removeTask}
             className="tasks"
-            />
+          />
         )
       })}
     </div>
