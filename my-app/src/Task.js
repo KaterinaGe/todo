@@ -1,20 +1,18 @@
-function Task({ todo, removeTask }) {
+function Task({ todo, removeTask, completeTodo }) {
     return (
-        <div key={todo.id} className="task">
-            <div>
-                <button>
-                    <input 
-                        type="checkbox" 
-                        id={Math.random().toString(36).substr(2,9)}
-                        className="check"
-                    />
-                </button>
-            </div>
+        <div key={new Date().toLocaleString()} className="task">
+            <span>
+                <label>
+                    <input className="check" type="checkbox" onChange={ () => completeTodo(todo.id) } checked={ todo.completed }/>
+                    <span></span>
+                    <label></label>
+                </label>
+            </span>
             <div>
                 {todo.task}
             </div>
             <div>
-                {(new Date()).toLocaleString()}
+                {todo.date}
             </div>
             <button className="remove" onClick={() => removeTask(todo.id)}>
                 X

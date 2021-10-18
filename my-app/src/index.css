@@ -47,9 +47,7 @@
   box-shadow: 10px 10px 3px 1px rgb(201, 201, 201)
 }
 
-.sort {
-  width: 500px;
-  height: 40px;
+.buttons {
   display: flex;
   border-color: none;
 }
@@ -66,33 +64,27 @@
   background: rgb(209, 209, 209);
 } 
 
+.status::before {
+  background: rgb(209, 209, 209);
+}
+
 .lettering {
-  margin-top: 5px;
+  margin-top: 10px;
   margin-left: 80px;
   height: 30px;
 }
 
 .arrow {
-  margin-top: 5px;
+  height: 40px;
   margin-left: 15px;
-  height: 30px;
-  width: 30px;
-  border-color: white;
   background-color: white;
-  border: 0;
   cursor: pointer;
+  box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
 }
 
 .arrow:hover {
   background: rgb(209, 209, 209);
 } 
-
-.arrow-img {
-  height: 30px;
-  width: 30px;
-  margin-left: -6px;
-  margin-top: -1px;
-}
 
 .todo-list {
   padding-left: 0;
@@ -111,50 +103,32 @@
   margin-top: 10px;
 }
 
-input[type="checkbox"] {
+span label input  {
   display: none;
-  position: absolute;
 }
 
-label {
+label span {
   cursor: pointer;
-  height: 30px;
-  width: 30px;
+  height: 7px;
+  width: 7px;
+  border: 2px solid gray;
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  border-radius:25px;
+  padding:3px;
+  margin-left: 4px;
   margin-top: 5px;
-  margin-left: 10px;
-  border: solid;
-  border-radius: 25px;
 }
 
-label:hover {
-  background: rgb(209, 209, 209);
-} 
-
-label:hover:after {
-  content: attr(data-tooltip);
-  font-size: 25px;
-  z-index: 2;
-  background: black;
-  color: white;
+[type=checkbox]:checked + span:before {
+  content: '\2714';
+  position: absolute;
+  top: -5px;
+  left: -1px;
+  font-size: 18px;
+  color:black;
 }
-
-label:before {
-  cursor: pointer;
-  height: 30px;
-  width: 30px;
-  margin-top: 7px;
-  margin-left: 10px;
-} 
-
-input:checked + label:before {
-  content: "V";
-  color: rgb(38, 38, 41);
-}
-
-input:disabled + label:before {
-  background: white;
-}
-
 .text {
   margin-left: -150px;
   margin-top: 10px;
