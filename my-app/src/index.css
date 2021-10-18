@@ -64,8 +64,12 @@
   background: rgb(209, 209, 209);
 } 
 
-.status::before {
+.statusNow {
+  height: 40px;
+  margin-right: 10px;
   background: rgb(209, 209, 209);
+  cursor: pointer;
+  box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
 }
 
 .lettering {
@@ -76,7 +80,7 @@
 
 .arrow {
   height: 40px;
-  margin-left: 15px;
+  margin-left: 10px;
   background-color: white;
   cursor: pointer;
   box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)

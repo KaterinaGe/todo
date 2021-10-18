@@ -3,11 +3,14 @@ import { useState } from 'react';
 import Task from "./Task";
 import TodoList from "./TodoList";
 import Filter from "./Filter"
+import Pages from "./Pages";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [filteredTodos, setFilteredTodos] = useState([]);
-  const date = new Date()
+  const date = new Date() 
+  const [pages] = useState([])
+  const [currentPage, setCurrentPage] = useState([])
 
   const addTask = (userInput) => {
     if(userInput) {
@@ -60,6 +63,35 @@ function App() {
     }
   }
 
+  function Pagination({ data, RenderComponent, title, pageLimit, dataLimit }) {
+    const [pages] = useState(Math.round(data.length / dataLimit));
+    const [currentPage, setCurrentPage] = useState(1);
+      
+    function goToNextPage() {
+      setCurrentPage((page) => page + 1);
+    }
+
+    function goToPreviousPage() {
+      setCurrentPage((page) => page - 1);
+    }
+
+    function changePage(event) {
+      const pageNumber = Number(event.target.textContent);
+      setCurrentPage(pageNumber);
+    }
+
+    const getPaginatedData = () => {
+      const startIndex = currentPage * dataLimit - dataLimit;
+      const endIndex = startIndex + dataLimit;
+      return data.slice(startIndex, endIndex);
+    };
+
+    const getPaginationGroup = () => {
+      let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
+      return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
+    };
+  }
+
   const removeTask = (id) => {
     setTodos([...todos.filter(todo => todo.id !== id)])
     setFilteredTodos([...todos.filter(todo => todo.id !== id)])
@@ -89,6 +121,7 @@ function App() {
           />
         )
       })}
+      
     </div>
   );
 }
