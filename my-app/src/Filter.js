@@ -1,8 +1,8 @@
-function Filter ({filter, sort}) {
+function Filter ({filter, sort, filtered}) {
         return (
             <div className="buttons">                
-                <button onClick={() => filter('all')}  value="All" className="status">All</button>
-                <button onClick={() => filter('done')} value="Done" className="status">Done</button>
+                <button onClick={() => filter('all')}  value="All" className={filtered ? "statusSelected" : "status"}>All</button>
+                <button onClick={() => filter('done')} value="Done" className={filtered ? "statusSelected" : "status"}>Done</button>
                 <button onClick={() => filter('undone')} value="Undone" className="status">Undone</button>
                 <p className="lettering">
                     Sort by date

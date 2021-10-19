@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function TodoList({ addTask }) {
+function TodoList({ editText }) {
     const [userInput, setUserInput] = useState('')
 
     const handleChange = (e) => {
@@ -9,10 +9,10 @@ function TodoList({ addTask }) {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        addTask(userInput)
+        editText(userInput)
         setUserInput("")
     }
-
+    
     const handleKeyPress = (e) => {
         if(e.key === "Enter") {
             handleSubmit(e)
@@ -26,12 +26,10 @@ function TodoList({ addTask }) {
                 type="text"
                 onChange={handleChange}
                 onKeyDown={handleKeyPress}
-                placeholder="I want to..."
-                className="input"
-                autoFocus
+                placeholder="Now I want to..."
+                className="edit"
                 ref={input => input && input.focus()}
             /> 
-            <button className="save">Save</button>
         </form>
     )
 }

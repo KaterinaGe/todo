@@ -64,7 +64,7 @@
   background: rgb(209, 209, 209);
 } 
 
-.statusNow {
+.statusSelected {
   height: 40px;
   margin-right: 10px;
   background: rgb(209, 209, 209);
@@ -103,6 +103,16 @@
   margin-bottom: 10px;
   box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
 }
+
+.todo {
+  cursor: pointer;
+  border: 0;
+  background-color: white;
+}
+
+.todo:hover {
+  background: rgb(209, 209, 209);
+} 
 
 .tasks {
   margin-top: 10px;
@@ -205,6 +215,7 @@ ul.pagination {
   height: 50px;
   width: 30px;
   font-size: 40px;
+  text-decoration: none;
   box-shadow: 3px 3px 3px 1px rgb(201, 201, 201);
   margin-right: 5px;
   margin-left: 5px;

@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from 'react';
 import Task from "./Task";
-import TodoList from "./TodoList";
+import Input from "./Input";
 import Filter from "./Filter"
 import Pages from "./Pages";
+
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -11,7 +12,6 @@ function App() {
   const date = new Date() 
   const [pages] = useState(5)
   const [currentPage, setCurrentPage] = useState(1)
-  const [value, setValue] = useState(filteredTodos)
 
   const addTask = (userInput) => {
     if(userInput) {
@@ -25,11 +25,17 @@ function App() {
       setFilteredTodos([newItem, ...todos])
     }
   }
-
-  const handleChange = (e) => {
-    if(e.key === "Enter") {
-      setValue(prompt("Now I want...", value))
-    }
+  
+  
+  const editText = id => {
+    setFilteredTodos(
+      filteredTodos.map( todo => {
+        if (todo.id === id) {
+          todo.title = prompt("Now I want...", todo.title)
+        }
+        return todo
+      })
+    ) 
   }
 
   const completeTodo = id => {
@@ -86,10 +92,12 @@ function App() {
 
   const nextPage = () => {
     if (currentPage != Math.ceil(filteredTodos.length / pages)) 
-    setCurrentPage (currentPage + 1) }
+    setCurrentPage (currentPage + 1) 
+  }
   const prevPage = () => {
     if (currentPage != 1) 
-    setCurrentPage (currentPage - 1)}
+    setCurrentPage (currentPage - 1)
+  }
 
   return (
     <div className="app">
@@ -98,7 +106,7 @@ function App() {
       </header>
       <div className="add">
         <p className="sum">{todos.length} tasks</p>
-        <TodoList addTask={addTask} />
+        <Input addTask={addTask} />
       </div>
       <Filter        
         filter={handleFiltering}
@@ -112,7 +120,7 @@ function App() {
             key={todo.id}
             removeTask={removeTask}
             className="tasks"
-            onClick={handleChange}
+            editText={editText}
           />
         )
       })}

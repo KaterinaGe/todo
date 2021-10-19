@@ -1,4 +1,6 @@
-function Task({ todo, removeTask, completeTodo }) {
+import Edit from "./Edit"
+
+function Task({ todo, removeTask, completeTodo, editText }) {
     return (
         <div key={new Date().toLocaleString()} className="task">
             <span>
@@ -8,9 +10,10 @@ function Task({ todo, removeTask, completeTodo }) {
                     <label></label>
                 </label>
             </span>
-            <div>
-                {todo.task}
-            </div>
+            <Edit
+                todo={todo.task}
+                editText={editText}
+            />
             <div>
                 {todo.date}
             </div>
