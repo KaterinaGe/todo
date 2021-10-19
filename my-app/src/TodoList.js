@@ -18,7 +18,7 @@ function TodoList({ addTask }) {
             handleSubmit(e)
         }
     }
-    
+
     return (
         <form onSubmit={handleSubmit} className="enter">
             <input 
