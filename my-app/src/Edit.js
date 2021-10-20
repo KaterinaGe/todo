@@ -1,16 +1,16 @@
 import {useState} from 'react'
 
-function TodoList({ editText }) {
-    const [userInput, setUserInput] = useState('')
+function Edit({ editText, id, setEdit }) {
+    const [userEdit, setUserEdit] = useState('')
 
     const handleChange = (e) => {
-        setUserInput(e.currentTarget.value)
+        setUserEdit(e.currentTarget.value)
     }
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        editText(userInput)
-        setUserInput("")
+        editText(id, userEdit)
+        setEdit(false)
     }
     
     const handleKeyPress = (e) => {
@@ -19,13 +19,20 @@ function TodoList({ editText }) {
         }
     }
 
+    const cancel = (e) => {
+        if(e.key === "Escape") {
+            setEdit(false)
+        }
+    }
+
     return (
         <form onSubmit={handleSubmit} className="enter">
             <input 
-                value={userInput}
+                value={userEdit}
                 type="text"
                 onChange={handleChange}
                 onKeyDown={handleKeyPress}
+                onKeyDown={cancel}
                 placeholder="Now I want to..."
                 className="edit"
                 ref={input => input && input.focus()}
@@ -34,4 +41,4 @@ function TodoList({ editText }) {
     )
 }
 
-export default TodoList;
+export default Edit;

@@ -47,6 +47,10 @@
   box-shadow: 10px 10px 3px 1px rgb(201, 201, 201)
 }
 
+.save:hover {
+  background: rgb(209, 209, 209);
+}
+
 .buttons {
   display: flex;
   border-color: none;
@@ -230,9 +234,17 @@ ul.pagination {
   box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
 }
 
+.prevPage:hover {
+  background: rgb(209, 209, 209);
+}
+
 .nextPage {
   margin-left: 10px;
   background-color: white;
   cursor: pointer;
   box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
+}
+
+.nextPage:hover {
+  background: rgb(209, 209, 209);
 }

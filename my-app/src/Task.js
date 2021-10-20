@@ -1,6 +1,9 @@
 import Edit from "./Edit"
+import { useState} from 'react'
 
 function Task({ todo, removeTask, completeTodo, editText }) {
+    const [edit, setEdit] = useState(false)
+
     return (
         <div key={new Date().toLocaleString()} className="task">
             <span>
@@ -10,10 +13,9 @@ function Task({ todo, removeTask, completeTodo, editText }) {
                     <label></label>
                 </label>
             </span>
-            <Edit
-                todo={todo.task}
-                editText={editText}
-            />
+            <button className="todo" onDoubleClick={() => setEdit(true)}>
+                {edit ? <Edit setEdit={setEdit} id={todo.id} editText={editText} /> : todo.task}
+            </button>
             <div>
                 {todo.date}
             </div>

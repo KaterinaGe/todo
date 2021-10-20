@@ -7,12 +7,13 @@ import Pages from "./Pages";
 
 
 function App() {
-  const [todos, setTodos] = useState([]);
-  const [filteredTodos, setFilteredTodos] = useState([]);
+  const [todos, setTodos] = useState([])
+  const [filteredTodos, setFilteredTodos] = useState([])
   const date = new Date() 
   const [pages] = useState(5)
   const [currentPage, setCurrentPage] = useState(1)
-
+  
+  
   const addTask = (userInput) => {
     if(userInput) {
       const newItem = {
@@ -26,18 +27,17 @@ function App() {
     }
   }
   
-  
-  const editText = id => {
-    setFilteredTodos(
-      filteredTodos.map( todo => {
+  const editText = (id, value) => {
+    setTodos(
+      todos.map( todo => {
         if (todo.id === id) {
-          todo.title = prompt("Now I want...", todo.title)
+          todo.task = value
         }
         return todo
       })
     ) 
   }
-
+  
   const completeTodo = id => {
     setTodos(
       todos.map( todo => {
@@ -75,6 +75,7 @@ function App() {
       setFilteredTodos(newSort)
     }
   }
+  
 
   const removeTask = (id) => {
     setTodos([...todos.filter(todo => todo.id !== id)])
@@ -105,10 +106,10 @@ function App() {
         <h1 className="h1">ToDo</h1>
       </header>
       <div className="add">
-        <p className="sum">{todos.length} tasks</p>
+        <p className="sum">{filteredTodos.length} tasks</p>
         <Input addTask={addTask} />
       </div>
-      <Filter        
+      <Filter     
         filter={handleFiltering}
         sort={sortedTodos}
       />
