@@ -3,7 +3,7 @@ import {useState} from 'react'
 function Input({ addTask }) {
     const [userInput, setUserInput] = useState('')
 
-    const handleChange = (e) => {
+    const handleChange = (e) => {                
         setUserInput(e.currentTarget.value)
     }
     
@@ -13,14 +13,17 @@ function Input({ addTask }) {
         setUserInput("")
     }
 
-    const handleKeyPress = (e) => {
-        if(e.key === "Enter") {
-            handleSubmit(e)
-        }
+    const handleKeyPress = (e) => {                
+        if(e.key === "Enter") {            
+            e.preventDefault()
+            if(userInput.trim() !== '') {                               
+                handleSubmit(e)
+            } 
+        }        
     }
 
     return (
-        <form onSubmit={handleSubmit} className="enter">
+        <form className="enter">
             <input 
                 value={userInput}
                 type="text"

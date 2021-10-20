@@ -2,10 +2,6 @@ import {useState} from 'react'
 
 function Edit({ editText, id, setEdit }) {
     const [userEdit, setUserEdit] = useState('')
-
-    const handleChange = (e) => {
-        setUserEdit(e.currentTarget.value)
-    }
     
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -13,26 +9,32 @@ function Edit({ editText, id, setEdit }) {
         setEdit(false)
     }
     
-    const handleKeyPress = (e) => {
+    const handleEdit = (e) => {
+ 
+        setUserEdit(e.currentTarget.value)
         if(e.key === "Enter") {
-            handleSubmit(e)
+            e.preventDefault()
+            if(userEdit.trim() !== '') {                               
+                handleSubmit(e)
+            } 
         }
-    }
-
-    const cancel = (e) => {
         if(e.key === "Escape") {
             setEdit(false)
-        }
+        }  
+     
     }
+
+
+    const handleBlur = () => {setEdit(false)}
 
     return (
         <form onSubmit={handleSubmit} className="enter">
             <input 
                 value={userEdit}
                 type="text"
-                onChange={handleChange}
-                onKeyDown={handleKeyPress}
-                onKeyDown={cancel}
+                onBlur={handleBlur}
+                onChange={handleEdit}
+                onKeyDown={handleEdit}
                 placeholder="Now I want to..."
                 className="edit"
                 ref={input => input && input.focus()}

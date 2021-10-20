@@ -9,13 +9,14 @@ import Pages from "./Pages";
 function App() {
   const [todos, setTodos] = useState([])
   const [filteredTodos, setFilteredTodos] = useState([])
-  const date = new Date() 
-  const [pages] = useState(5)
+  const TASK_PER_PAGE = 5
   const [currentPage, setCurrentPage] = useState(1)
   
   
   const addTask = (userInput) => {
+    
     if(userInput) {
+      const date = new Date();
       const newItem = {
         id: Date.now(),
         task: userInput,
@@ -49,7 +50,9 @@ function App() {
     ) 
   }
 
-  const  handleFiltering = (filter) => {       
+  
+  const  handleFiltering = (filter) => { 
+    setCurrentPage(1)      
     if (filter === 'all') {
       return setFilteredTodos([...todos]);
     }      
@@ -63,42 +66,41 @@ function App() {
 
   const sortedTodos = (sort) => {
     if (sort === 'sortDown') {
-      const newSort = []
-      const sort = todos.sort((a,b) => b.id - a.id)
-      Object.assign(newSort, sort)
-      setFilteredTodos(newSort)
+      const sortedTodos = [...todos]
+      sortedTodos.sort((a,b) => b.id - a.id)
+      setFilteredTodos(sortedTodos)
     }
     if (sort === 'sortUp') {
-      const newSort = []
-      const sort = todos.sort((a,b) => a.id - b.id)
-      Object.assign(newSort, sort)
-      setFilteredTodos(newSort)
+      const sortedTodos = [...todos]
+      sortedTodos.sort((a,b) => a.id - b.id)
+      setFilteredTodos(sortedTodos)
     }
   }
   
 
-  const removeTask = (id) => {
+  const removeTask = (id) => { 
     setTodos([...todos.filter(todo => todo.id !== id)])
     setFilteredTodos([...todos.filter(todo => todo.id !== id)])
+    if (currentPageTodo.length === 1) {
+      setCurrentPage (currentPage - 1)    
+    } 
   }
 
-  const lastPage = currentPage * pages
-  const firstPage = lastPage - pages
+  const lastPage = currentPage * TASK_PER_PAGE
+  const firstPage = lastPage - TASK_PER_PAGE
   const currentPageTodo = filteredTodos.slice(firstPage, lastPage)
-
-  const nextPageArrow = ">>"
-  const prevPageArrow = "<<"
 
   const paginate = pageNumber => setCurrentPage(pageNumber)
 
   const nextPage = () => {
-    if (currentPage != Math.ceil(filteredTodos.length / pages)) 
+    if (currentPage !== Math.ceil(filteredTodos.length / TASK_PER_PAGE)) 
     setCurrentPage (currentPage + 1) 
   }
   const prevPage = () => {
-    if (currentPage != 1) 
+    if (currentPage !== 1) 
     setCurrentPage (currentPage - 1)
   }
+  
 
   return (
     <div className="app">
@@ -109,7 +111,7 @@ function App() {
         <p className="sum">{filteredTodos.length} tasks</p>
         <Input addTask={addTask} />
       </div>
-      <Filter     
+      <Filter 
         filter={handleFiltering}
         sort={sortedTodos}
       />
@@ -125,15 +127,14 @@ function App() {
           />
         )
       })}
-      <div className="pages">
-        <button className="prevPage"onClick={prevPage}> {prevPageArrow} </button>
-        <Pages 
-          pages={pages}
-          total={filteredTodos.length}
-          paginate={paginate}
-        />
-        <button className="nextPage" onClick={nextPage}> {nextPageArrow} </button>
-      </div>
+      {filteredTodos.length < 6 ? '' :
+      <Pages 
+        nextPage={nextPage}
+        prevPage={prevPage}    
+        TASK_PER_PAGE={TASK_PER_PAGE}
+        total={filteredTodos.length}
+        paginate={paginate}
+      />}
     </div>
   );
 }

@@ -1,12 +1,16 @@
-function Pages ({pages, total, paginate }) {
+function Pages ({TASK_PER_PAGE, total, paginate, prevPage, nextPage }) {
     const pageNumber =  []
+    const nextPageArrow = ">>"
+    const prevPageArrow = "<<"
 
-    for (let i = 1; i <= Math.ceil(total/pages); i++) {
+
+    for (let i = 1; i <= Math.ceil(total/TASK_PER_PAGE); i++) {
         pageNumber.push(i)
     }
 
     return (
-        <div>
+        <div className="pages">
+            <button className="prevPage"onClick={prevPage}> {prevPageArrow} </button>
             <ul className="pagination">
                 {pageNumber.map(number => (
                     <li className="nuber" key={number}>
@@ -18,6 +22,7 @@ function Pages ({pages, total, paginate }) {
                     </li>
                 ))}
             </ul>
+            <button className="nextPage" onClick={nextPage}> {nextPageArrow} </button>
         </div>
     )
     

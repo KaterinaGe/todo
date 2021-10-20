@@ -13,9 +13,9 @@ function Task({ todo, removeTask, completeTodo, editText }) {
                     <label></label>
                 </label>
             </span>
-            <button className="todo" onDoubleClick={() => setEdit(true)}>
+            <p className="todo" onDoubleClick={() => setEdit(true)}>
                 {edit ? <Edit setEdit={setEdit} id={todo.id} editText={editText} /> : todo.task}
-            </button>
+            </p>
             <div>
                 {todo.date}
             </div>
