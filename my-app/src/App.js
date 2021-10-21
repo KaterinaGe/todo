@@ -9,22 +9,24 @@ import Pages from "./Pages";
 function App() {
   const [todos, setTodos] = useState([])
   const [filteredTodos, setFilteredTodos] = useState([])
+  const [filter, setFilter] = useState([])
   const TASK_PER_PAGE = 5
   const [currentPage, setCurrentPage] = useState(1)
   
   
   const addTask = (userInput) => {
-    
-    if(userInput) {
-      const date = new Date();
-      const newItem = {
-        id: Date.now(),
-        task: userInput,
-        completed: false,
-        date: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
+    if (todos.length < 50) {
+      if(userInput) {
+        const date = new Date();
+        const newItem = {
+          id: Date.now(),
+          task: userInput,
+          completed: false,
+          date: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
+        }
+        setTodos([newItem, ...todos])
+        setFilteredTodos([newItem, ...todos])
       }
-      setTodos([newItem, ...todos])
-      setFilteredTodos([newItem, ...todos])
     }
   }
   
@@ -60,18 +62,17 @@ function App() {
       filter === 'done' 
       ? todo.completed 
       : !todo.completed)];
-      
     setFilteredTodos(filtered)
   }
 
   const sortedTodos = (sort) => {
     if (sort === 'sortDown') {
-      const sortedTodos = [...todos]
+      const sortedTodos = [...filteredTodos]
       sortedTodos.sort((a,b) => b.id - a.id)
       setFilteredTodos(sortedTodos)
     }
     if (sort === 'sortUp') {
-      const sortedTodos = [...todos]
+      const sortedTodos = [...filteredTodos]
       sortedTodos.sort((a,b) => a.id - b.id)
       setFilteredTodos(sortedTodos)
     }
@@ -82,7 +83,9 @@ function App() {
     setTodos([...todos.filter(todo => todo.id !== id)])
     setFilteredTodos([...todos.filter(todo => todo.id !== id)])
     if (currentPageTodo.length === 1) {
-      setCurrentPage (currentPage - 1)    
+      if (currentPage !== 1) {
+        setCurrentPage (currentPage - 1)    
+      }
     } 
   }
 
@@ -100,7 +103,6 @@ function App() {
     if (currentPage !== 1) 
     setCurrentPage (currentPage - 1)
   }
-  
 
   return (
     <div className="app">
