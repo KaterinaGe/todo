@@ -9,14 +9,14 @@ import Pages from "./Pages";
 function App() {
   const [todos, setTodos] = useState([])
   const [filteredTodos, setFilteredTodos] = useState([])
-  const [filter] = useState([])
+  const [filter, setFilter] = useState('all')
   const TASK_PER_PAGE = 5
   const [currentPage, setCurrentPage] = useState(1)
-  
-  
+
+
   const addTask = (userInput) => {
     if (todos.length < 50) {
-      if(userInput) {
+      if (userInput) {
         const date = new Date();
         const newItem = {
           id: Date.now(),
@@ -29,64 +29,67 @@ function App() {
       }
     }
   }
-  
+
   const editText = (id, value) => {
     setTodos(
-      todos.map( todo => {
+      todos.map(todo => {
         if (todo.id === id) {
           todo.task = value
         }
         return todo
       })
-    ) 
+    )
   }
-  
+
   const completeTodo = id => {
     setTodos(
-      todos.map( todo => {
+      todos.map(todo => {
         if (todo.id === id) {
           todo.completed = !todo.completed
         }
         return todo
       })
-    ) 
+    )
   }
 
-  
-  const  handleFiltering = () => { 
-    setCurrentPage(1)      
-    if (filter === 'all') {
+  const handleFiltering = (value) => {
+    setCurrentPage(1)
+    if (value === 'all') {
       return setFilteredTodos([...todos]);
-    }      
-    const filtered = [...todos.filter(todo => 
-      filter === 'done' 
-      ? todo.completed 
-      : !todo.completed)];
+    }
+    const filtered = [...todos.filter(todo =>
+      value === 'done'
+        ? todo.completed
+        : !todo.completed)];
     setFilteredTodos(filtered)
+  }
+
+  const filtering = () => {
+    setFilter(filter)
   }
 
   const sortedTodos = (sort) => {
     if (sort === 'sortDown') {
       const sortedTodos = [...filteredTodos]
-      sortedTodos.sort((a,b) => b.id - a.id)
+      sortedTodos.sort((a, b) => b.id - a.id)
       setFilteredTodos(sortedTodos)
     }
     if (sort === 'sortUp') {
       const sortedTodos = [...filteredTodos]
-      sortedTodos.sort((a,b) => a.id - b.id)
+      sortedTodos.sort((a, b) => a.id - b.id)
       setFilteredTodos(sortedTodos)
     }
   }
-  
 
-  const removeTask = (id) => { 
+
+  const removeTask = (id) => {
     setTodos([...todos.filter(todo => todo.id !== id)])
     setFilteredTodos([...todos.filter(todo => todo.id !== id)])
     if (currentPageTodo.length === 1) {
       if (currentPage !== 1) {
-        setCurrentPage (currentPage - 1)    
+        setCurrentPage(currentPage - 1)
       }
-    } 
+    }
   }
 
   const lastPage = currentPage * TASK_PER_PAGE
@@ -96,12 +99,12 @@ function App() {
   const paginate = pageNumber => setCurrentPage(pageNumber)
 
   const nextPage = () => {
-    if (currentPage !== Math.ceil(filteredTodos.length / TASK_PER_PAGE)) 
-    setCurrentPage (currentPage + 1) 
+    if (currentPage !== Math.ceil(filteredTodos.length / TASK_PER_PAGE))
+      setCurrentPage(currentPage + 1)
   }
   const prevPage = () => {
-    if (currentPage !== 1) 
-    setCurrentPage (currentPage - 1)
+    if (currentPage !== 1)
+      setCurrentPage(currentPage - 1)
   }
 
   return (
@@ -113,8 +116,9 @@ function App() {
         <p className="sum">{filteredTodos.length} tasks</p>
         <Input addTask={addTask} />
       </div>
-      <Filter 
-        filter={handleFiltering}
+      <Filter
+        handleFiltering={handleFiltering}
+        filter={filter}
         sort={sortedTodos}
       />
       {currentPageTodo.map((todo) => {
@@ -130,13 +134,13 @@ function App() {
         )
       })}
       {filteredTodos.length < 6 ? '' :
-      <Pages 
-        nextPage={nextPage}
-        prevPage={prevPage}    
-        TASK_PER_PAGE={TASK_PER_PAGE}
-        total={filteredTodos.length}
-        paginate={paginate}
-      />}
+        <Pages
+          nextPage={nextPage}
+          prevPage={prevPage}
+          TASK_PER_PAGE={TASK_PER_PAGE}
+          total={filteredTodos.length}
+          paginate={paginate}
+        />}
     </div>
   );
 }

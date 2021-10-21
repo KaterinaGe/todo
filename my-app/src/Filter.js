@@ -1,19 +1,17 @@
-import {useState} from 'react'
-
-function Filter ({filter, sort, }) {
+function Filter ({filter, sort, handleFiltering}) {
     return (
         <div className="buttons"> 
             {filter === 'all' 
-            ? <button onClick={() => filter('all')}  value="All" className="statusSelected">All</button>
-            : <button onClick={() => filter('all')}  value="All" className="status">All</button>
+            ? <button onClick={() => handleFiltering('all')}  value="All" className="statusSelected">All</button>
+            : <button onClick={() => handleFiltering('all')}  value="All" className="status">All</button>
             }
             {filter === 'done'
-            ? <button onClick={() => filter('done')} value="Done" className="statusSelected">Done</button>   
-            : <button onClick={() => filter('done')} value="Done" className="status">Done</button>
+            ? <button onClick={() => handleFiltering('done')} value="Done" className="statusSelected">Done</button>   
+            : <button onClick={() => handleFiltering('done')} value="Done" className="status">Done</button>
             }
             {filter === 'undone'
-            ? <button onClick={() => filter('undone')} value="Undone" className="statusSelected">Undone</button>
-            : <button onClick={() => filter('undone')} value="Undone" className="status">Undone</button>
+            ? <button onClick={() => handleFiltering('undone')} value="Undone" className="statusSelected">Undone</button>
+            : <button onClick={() => handleFiltering('undone')} value="Undone" className="status">Undone</button>
             }          
                    
             <p className="lettering">
