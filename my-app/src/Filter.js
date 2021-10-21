@@ -1,6 +1,7 @@
-function Filter ({filter, sort, handleFiltering}) {
+function Filter ({filter, sort, handleFiltering, }) {
     return (
         <div className="buttons"> 
+
             {filter === 'all' 
             ? <button onClick={() => handleFiltering('all')}  value="All" className="statusSelected">All</button>
             : <button onClick={() => handleFiltering('all')}  value="All" className="status">All</button>

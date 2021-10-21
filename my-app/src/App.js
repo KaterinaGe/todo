@@ -64,10 +64,6 @@ function App() {
     setFilteredTodos(filtered)
   }
 
-  const filtering = () => {
-    setFilter(filter)
-  }
-
   const sortedTodos = (sort) => {
     if (sort === 'sortDown') {
       const sortedTodos = [...filteredTodos]
@@ -135,6 +131,7 @@ function App() {
       })}
       {filteredTodos.length < 6 ? '' :
         <Pages
+          currentPage={currentPage}
           nextPage={nextPage}
           prevPage={prevPage}
           TASK_PER_PAGE={TASK_PER_PAGE}
