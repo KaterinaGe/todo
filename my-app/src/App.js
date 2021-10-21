@@ -9,7 +9,7 @@ import Pages from "./Pages";
 function App() {
   const [todos, setTodos] = useState([])
   const [filteredTodos, setFilteredTodos] = useState([])
-  const [filter, setFilter] = useState([])
+  const [filter] = useState([])
   const TASK_PER_PAGE = 5
   const [currentPage, setCurrentPage] = useState(1)
   
@@ -53,7 +53,7 @@ function App() {
   }
 
   
-  const  handleFiltering = (filter) => { 
+  const  handleFiltering = () => { 
     setCurrentPage(1)      
     if (filter === 'all') {
       return setFilteredTodos([...todos]);
