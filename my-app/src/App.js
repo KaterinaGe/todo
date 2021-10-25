@@ -10,11 +10,14 @@ function App() {
   const [todos, setTodos] = useState([])
   const [filteredTodos, setFilteredTodos] = useState([])
   const [filter, setFilter] = useState('all')
+  const [sort, setSort] = useState('sortDown')
   const TASK_PER_PAGE = 5
   const [currentPage, setCurrentPage] = useState(1)
 
 
   const addTask = (userInput) => {
+    setFilter('all')
+    setSort('sortDown')
     if (todos.length < 50) {
       if (userInput) {
         const date = new Date();
@@ -55,24 +58,30 @@ function App() {
   const handleFiltering = (value) => {
     setCurrentPage(1)
     if (value === 'all') {
-      return setFilteredTodos([...todos]);
+      setFilter('all')
+      setFilteredTodos([...todos]);
     }
-    const filtered = [...todos.filter(todo =>
-      value === 'done'
-        ? todo.completed
-        : !todo.completed)];
-    setFilteredTodos(filtered)
+    if (value === 'done') {
+      setFilter('done')
+      setFilteredTodos([...todos.filter(todo => todo.completed === true)])
+    }
+    if (value === 'undone') {
+      setFilter('undone')
+      setFilteredTodos([...todos.filter(todo => todo.completed === false)])
+    }
   }
 
   const sortedTodos = (sort) => {
     if (sort === 'sortDown') {
       const sortedTodos = [...filteredTodos]
       sortedTodos.sort((a, b) => b.id - a.id)
+      setSort('sortDown')
       setFilteredTodos(sortedTodos)
     }
     if (sort === 'sortUp') {
       const sortedTodos = [...filteredTodos]
       sortedTodos.sort((a, b) => a.id - b.id)
+      setSort('sortUp')
       setFilteredTodos(sortedTodos)
     }
   }
@@ -115,7 +124,8 @@ function App() {
       <Filter
         handleFiltering={handleFiltering}
         filter={filter}
-        sort={sortedTodos}
+        sorted={sortedTodos}
+        sort={sort}
       />
       {currentPageTodo.map((todo) => {
         return (

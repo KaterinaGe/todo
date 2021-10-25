@@ -9,26 +9,21 @@ function Input({ addTask }) {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        addTask(userInput)
+        if(userInput.trim() !== '') {                               
+            addTask(userInput)
+        } 
         setUserInput("")
     }
 
-    const handleKeyPress = (e) => {                
-        if(e.key === "Enter") {            
-            e.preventDefault()
-            if(userInput.trim() !== '') {                               
-                handleSubmit(e)
-            } 
-        }        
-    }
+
 
     return (
-        <form className="enter">
+        <form className="enter" onSubmit={(e) => handleSubmit(e)}>
             <input 
                 value={userInput}
                 type="text"
                 onChange={handleChange}
-                onKeyDown={handleKeyPress}
+                
                 placeholder="I want to..."
                 className="input"
                 autoFocus
