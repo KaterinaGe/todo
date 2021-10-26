@@ -1,9 +1,10 @@
 import React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Task from "./Task";
 import Input from "./Input";
 import Filter from "./Filter"
 import Pages from "./Pages";
+import axios from "axios";
 
 function App() {
   const [todos, setTodos] = useState([])
@@ -13,21 +14,23 @@ function App() {
   const TASK_PER_PAGE = 5
   const [currentPage, setCurrentPage] = useState(1)
 
+  useEffect (() => {
+      getTodos()
+  }, [filteredTodos, ])
+    
+  const getTodos = async() => {
+      const todo = await axios.get('https://todo-api-learning.herokuapp.com/v1/tasks/2')
+      setTodos(todo.data)
+      setFilteredTodos(todo.data)
+  }
+
   const addTask = (userInput) => {
     setFilter('all')
     setSort('sortDown')
-    if (todos.length < 50) {
-      if (userInput) {
-        const date = new Date();
-        const newItem = {
-          id: Date.now(),
-          task: userInput,
-          completed: false,
-          date: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
-        }
-        setTodos([newItem, ...todos])
-        setFilteredTodos([newItem, ...todos])
-      }
+    if (userInput) {
+      const newItem = axios.post('https://todo-api-learning.herokuapp.com/v1/tasks/2')
+      setTodos([newItem, ...todos])
+      setFilteredTodos([newItem, ...todos])
     }
   }
 
@@ -70,14 +73,13 @@ function App() {
   }
 
   const sortedTodos = (sort) => {
+    const sortedTodos = [...filteredTodos]
     if (sort === 'sortDown') {
-      const sortedTodos = [...filteredTodos]
       sortedTodos.sort((a, b) => b.id - a.id)
       setSort('sortDown')
       setFilteredTodos(sortedTodos)
     }
     if (sort === 'sortUp') {
-      const sortedTodos = [...filteredTodos]
       sortedTodos.sort((a, b) => a.id - b.id)
       setSort('sortUp')
       setFilteredTodos(sortedTodos)

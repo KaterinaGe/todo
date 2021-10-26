@@ -1,11 +1,11 @@
 import {useState} from 'react'
 
-function Edit({ editText, id, setEdit }) {
+function Edit({ editText, uuid, setEdit }) {
     const [userEdit, setUserEdit] = useState('')
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        editText(id, userEdit)
+        editText(uuid, userEdit)
         setEdit(false)
     }
     
