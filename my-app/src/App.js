@@ -13,7 +13,6 @@ function App() {
   const TASK_PER_PAGE = 5
   const [currentPage, setCurrentPage] = useState(1)
 
-
   const addTask = (userInput) => {
     setFilter('all')
     setSort('sortDown')

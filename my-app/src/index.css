@@ -191,12 +191,6 @@ label span {
   outline: none;
 }
 
-.trash {
-  height: 30px;
-  width: 30px;
-  margin-top: 7px;
-}
-
 .pages {
   display: flex;
   align-items: center;
