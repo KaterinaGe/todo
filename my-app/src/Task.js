@@ -5,10 +5,10 @@ function Task({ todo, removeTask, completeTodo, editText }) {
     const [edit, setEdit] = useState(false)
 
     return (
-        <div key={new Date().toLocaleString()} className="task">
+        <div  className="task">
             <span>
                 <label>
-                    <input className="check" type="checkbox" onChange={ () => completeTodo(todo.id) } checked={ todo.completed }/>
+                    <input className="check" type="checkbox" onChange={ () => completeTodo(todo.uuid) } checked={ todo.done }/>
                     <span></span>
                     <label></label>
                 </label>

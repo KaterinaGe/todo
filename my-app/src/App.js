@@ -28,9 +28,12 @@ function App() {
     setFilter('all')
     setSort('sortDown')
     if (userInput) {
-      const newItem = axios.post('https://todo-api-learning.herokuapp.com/v1/tasks/2')
-      setTodos([newItem, ...todos])
-      setFilteredTodos([newItem, ...todos])
+      const newItem = axios.post('https://todo-api-learning.herokuapp.com/v1/tasks/2', {
+        name: userInput,
+        done: false
+      })
+      setTodos([newItem.data, ...todos])
+      setFilteredTodos([newItem.data, ...todos])
     }
   }
 
@@ -130,9 +133,9 @@ function App() {
       {currentPageTodo.map((todo) => {
         return (
           <Task
-            completeTodo={completeTodo}
+            done={completeTodo}
             todo={todo}
-            key={todo.id}
+            
             removeTask={removeTask}
             className="tasks"
             editText={editText}
