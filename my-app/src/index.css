@@ -180,17 +180,6 @@ label span {
   border-color: white;
 } 
 
-.remove:hover::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  font-size: 25px;
-  z-index: 3;
-  background: black;
-  color: white;
-  border-color: white;
-  outline: none;
-}
-
 .pages {
   display: flex;
   align-items: center;
