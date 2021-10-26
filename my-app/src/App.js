@@ -5,7 +5,6 @@ import Input from "./Input";
 import Filter from "./Filter"
 import Pages from "./Pages";
 
-
 function App() {
   const [todos, setTodos] = useState([])
   const [filteredTodos, setFilteredTodos] = useState([])
