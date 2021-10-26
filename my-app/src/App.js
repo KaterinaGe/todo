@@ -117,7 +117,7 @@ function App() {
       </header>
       <div className="add">
         <p className="sum">{filteredTodos.length} tasks</p>
-        <Input addTask={addTask} />
+        <Input addTask={addTask}/>
       </div>
       <Filter
         handleFiltering={handleFiltering}
@@ -137,7 +137,7 @@ function App() {
           />
         )
       })}
-      {filteredTodos.length < 6 ? '' :
+      {filteredTodos.length > 5 &&
         <Pages
           currentPage={currentPage}
           nextPage={nextPage}
