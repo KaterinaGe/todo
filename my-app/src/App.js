@@ -9,90 +9,67 @@ import axios from "axios";
 function App() {
   const [todos, setTodos] = useState([])
   const [filteredTodos, setFilteredTodos] = useState([])
-  const [filter, setFilter] = useState('all')
-  const [sort, setSort] = useState('sortDown')
+  const [filterBy, setFilterBy] = useState('')
+  const [order, setOrder] = useState('asc')
   const TASK_PER_PAGE = 5
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect (() => {
-      getTodos()
-  }, [filteredTodos, ])
+    getTodos()
+  }, [ order, filterBy ])
     
   const getTodos = async() => {
-      const todo = await axios.get('https://todo-api-learning.herokuapp.com/v1/tasks/2')
-      setTodos(todo.data)
-      setFilteredTodos(todo.data)
+    setCurrentPage(1)
+    const todo = await axios.get(`https://todo-api-learning.herokuapp.com/v1/tasks/2?filterBy=${filterBy}&order=${order}`)
+    setTodos(todo.data)
+    setFilteredTodos(todo.data)
   }
 
-  const addTask = (userInput) => {
-    setFilter('all')
-    setSort('sortDown')
+  const addTask = async (userInput) => {
+    setFilterBy('all')
+    setOrder('sortDown')
     if (userInput) {
-      const newItem = axios.post('https://todo-api-learning.herokuapp.com/v1/tasks/2', {
+      await axios.post('https://todo-api-learning.herokuapp.com/v1/task/2', {
         name: userInput,
         done: false
       })
-      setTodos([newItem.data, ...todos])
-      setFilteredTodos([newItem.data, ...todos])
+      getTodos()
     }
   }
 
-  const editText = (id, value) => {
+  const editText = async (id, userEdit, complete) => {
+    await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`, {
+      name: userEdit,
+      done: complete
+    })
     setTodos(
       todos.map(todo => {
-        if (todo.id === id) {
-          todo.task = value
+        if (todo.uuid === id) {
+          todo.name = userEdit
         }
         return todo
       })
     )
   }
 
-  const completeTodo = id => {
+  const completeTodo = async (id, userEdit, complete) => {
+    await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`, {
+      name: userEdit,
+      done: !complete
+    })
     setTodos(
       todos.map(todo => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed
+        if (todo.uuid === id) {
+          todo.done = !todo.done
         }
         return todo
       })
     )
   }
 
-  const handleFiltering = (value) => {
-    setCurrentPage(1)
-    if (value === 'all') {
-      setFilter('all')
-      setFilteredTodos([...todos]);
-    }
-    if (value === 'done') {
-      setFilter('done')
-      setFilteredTodos([...todos.filter(todo => todo.completed === true)])
-    }
-    if (value === 'undone') {
-      setFilter('undone')
-      setFilteredTodos([...todos.filter(todo => todo.completed === false)])
-    }
-  }
-
-  const sortedTodos = (sort) => {
-    const sortedTodos = [...filteredTodos]
-    if (sort === 'sortDown') {
-      sortedTodos.sort((a, b) => b.id - a.id)
-      setSort('sortDown')
-      setFilteredTodos(sortedTodos)
-    }
-    if (sort === 'sortUp') {
-      sortedTodos.sort((a, b) => a.id - b.id)
-      setSort('sortUp')
-      setFilteredTodos(sortedTodos)
-    }
-  }
-
-
-  const removeTask = (id) => {
-    setTodos([...todos.filter(todo => todo.id !== id)])
-    setFilteredTodos([...todos.filter(todo => todo.id !== id)])
+  const removeTask = async (id) => {
+    await axios.delete(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`)
+    setFilteredTodos(filteredTodos.filter(todo => todo.uuid !== id))
     if (currentPageTodo.length === 1) {
       if (currentPage !== 1) {
         setCurrentPage(currentPage - 1)
@@ -125,17 +102,16 @@ function App() {
         <Input addTask={addTask}/>
       </div>
       <Filter
-        handleFiltering={handleFiltering}
-        filter={filter}
-        sorted={sortedTodos}
-        sort={sort}
+        setOrder={setOrder}
+        setFilterBy={setFilterBy}
+        filterBy={filterBy}
+        order={order}
       />
       {currentPageTodo.map((todo) => {
         return (
           <Task
-            done={completeTodo}
+            completeTodo={completeTodo}
             todo={todo}
-            
             removeTask={removeTask}
             className="tasks"
             editText={editText}

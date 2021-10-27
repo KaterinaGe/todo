@@ -1,16 +1,15 @@
 import {useState} from 'react'
 
-function Edit({ editText, uuid, setEdit }) {
-    const [userEdit, setUserEdit] = useState('')
+function Edit({ editText, setEdit, todo }) {
+    const [userEdit, setUserEdit] = useState(todo.name)
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        editText(uuid, userEdit)
+        editText(todo.uuid, userEdit, todo.done)
         setEdit(false)
     }
     
     const handleEdit = (e) => {
- 
         setUserEdit(e.currentTarget.value)
         if(e.key === "Enter") {
             e.preventDefault()
@@ -21,9 +20,7 @@ function Edit({ editText, uuid, setEdit }) {
         if(e.key === "Escape") {
             setEdit(false)
         }  
-     
     }
-
 
     const handleBlur = () => {setEdit(false)}
 
@@ -35,7 +32,6 @@ function Edit({ editText, uuid, setEdit }) {
                 onBlur={handleBlur}
                 onChange={handleEdit}
                 onKeyDown={handleEdit}
-                placeholder="Now I want to..."
                 className="edit"
                 ref={input => input && input.focus()}
             /> 
