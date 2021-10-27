@@ -4,7 +4,9 @@ import Task from "./Task";
 import Input from "./Input";
 import Filter from "./Filter"
 import Pages from "./Pages";
+import Error from "./Error";
 import axios from "axios";
+
 
 function App() {
   const [todos, setTodos] = useState([])
@@ -13,67 +15,101 @@ function App() {
   const [order, setOrder] = useState('asc')
   const TASK_PER_PAGE = 5
   const [currentPage, setCurrentPage] = useState(1)
+  const [error, setError] = useState(false)
+  const [message, setContent] = useState('')
 
   useEffect (() => {
     getTodos()
   }, [ order, filterBy ])
     
   const getTodos = async() => {
-    setCurrentPage(1)
-    const todo = await axios.get(`https://todo-api-learning.herokuapp.com/v1/tasks/2?filterBy=${filterBy}&order=${order}`)
-    setTodos(todo.data)
-    setFilteredTodos(todo.data)
+    try {
+      setCurrentPage(1)
+      const todo = await axios.get(`https://todo-api-learning.herokuapp.com/v1/tasks/2?filterBy=${filterBy}&order=${order}`)
+      setTodos(todo.data)
+      setFilteredTodos(todo.data)
+    } catch (error) {
+      setContent(error.response.data.message)
+      setError(true)
+      setTimeout(() => setError(false), 5000)
+    }
+    
   }
 
   const addTask = async (userInput) => {
-    setFilterBy('all')
-    setOrder('sortDown')
-    if (userInput) {
-      await axios.post('https://todo-api-learning.herokuapp.com/v1/task/2', {
-        name: userInput,
-        done: false
-      })
-      getTodos()
+    try{
+      setFilterBy('all')
+      setOrder('sortDown')
+      if (userInput) {
+        await axios.post('https://todo-api-learning.herokuapp.com/v1/task/2', {
+          name: userInput,
+          done: false
+        })
+        getTodos()
+      }
+    } catch(error) {
+      setContent(error.response.data.message)
+      setError(true)
+      setTimeout(() => setError(false), 5000)
     }
+    
   }
 
   const editText = async (id, userEdit, complete) => {
-    await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`, {
-      name: userEdit,
-      done: complete
-    })
-    setTodos(
-      todos.map(todo => {
-        if (todo.uuid === id) {
-          todo.name = userEdit
-        }
-        return todo
+    try{
+      await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`, {
+        name: userEdit,
+        done: complete
       })
-    )
+      setTodos(
+        todos.map(todo => {
+          if (todo.uuid === id) {
+            todo.name = userEdit
+          }
+          return todo
+        })
+      )
+    } catch(error) {
+      setContent(error.response.data.message)
+      setError(true)
+      setTimeout(() => setError(false), 5000)
+    }
   }
 
   const completeTodo = async (id, userEdit, complete) => {
-    await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`, {
-      name: userEdit,
-      done: !complete
-    })
-    setTodos(
-      todos.map(todo => {
-        if (todo.uuid === id) {
-          todo.done = !todo.done
-        }
-        return todo
+    try {
+      await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`, {
+        name: userEdit,
+        done: !complete
       })
-    )
+      setTodos(
+        todos.map(todo => {
+          if (todo.uuid === id) {
+            todo.done = !todo.done
+          }
+          return todo
+        })
+      )
+    } catch (error) {
+      setContent(error.response.data.message)
+      setError(true)
+      setTimeout(() => setError(false), 5000)
+    } 
   }
 
   const removeTask = async (id) => {
-    await axios.delete(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`)
-    setFilteredTodos(filteredTodos.filter(todo => todo.uuid !== id))
-    if (currentPageTodo.length === 1) {
-      if (currentPage !== 1) {
-        setCurrentPage(currentPage - 1)
+    try {
+      await axios.delete(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`)
+      setFilteredTodos(filteredTodos.filter(todo => todo.uuid !== id))
+      if (currentPageTodo.length === 1) {
+        if (currentPage !== 1) {
+          setCurrentPage(currentPage - 1)
+        }
       }
+    } catch(error) {
+      setContent(error.response.data.message)
+      setError(true)
+      setTimeout(() => setError(false), 5000)
     }
   }
 
@@ -90,6 +126,10 @@ function App() {
   const prevPage = () => {
     if (currentPage !== 1)
       setCurrentPage(currentPage - 1)
+  }
+
+  const errorWindow = () => {
+    setError(false)
   }
 
   return (
@@ -127,6 +167,11 @@ function App() {
           total={filteredTodos.length}
           paginate={paginate}
         />}
+      <Error 
+        error={error}
+        errorWindow={errorWindow}
+        message={message}
+      />
     </div>
   );
 }

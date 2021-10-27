@@ -253,3 +253,36 @@ ul.pagination {
 .nextPage:hover {
   background: rgb(209, 209, 209);
 }
+
+.error{
+  background-color: white;
+  flex-direction: column;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 300px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  animation-fill-mode: both;
+  justify-content: center;
+  animation-name: fadeInDown;
+  animation-duration: 300ms;
+  border: 1px solid;
+  box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
+}
+
+@keyframes fadeInDown { 
+  0% {             
+      opacity: 0;
+      transform: translate3d(0px, -100%, 0px);
+  }
+  100% {       
+      opacity: 1;
+      transform: none;
+  }
+}
+
+.message{
+  margin: 5px;
+}
