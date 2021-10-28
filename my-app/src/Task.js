@@ -8,7 +8,7 @@ function Task({ todo, removeTask, completeTodo, editText }) {
         <div  className="task">
             <span>
                 <label>
-                    <input className="check" type="checkbox" todo={todo} onChange={ () => completeTodo(todo.uuid, todo.done) } checked={ todo.done }/>
+                    <input className="check" type="checkbox" todo={todo} onChange={ () => completeTodo(todo, todo.done, !todo.done) } checked={ todo.done }/>
                     <span></span>
                     <label></label>
                 </label>

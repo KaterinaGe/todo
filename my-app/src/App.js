@@ -54,7 +54,6 @@ function App() {
   }
 
   const editText = async (id, userEdit, complete) => {
-    console.log(complete)
     try{
       await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`, {
         name: userEdit,
@@ -69,11 +68,10 @@ function App() {
   }
 
   const completeTodo = async (todo, userInput, complete ) => {
-    console.log(complete)
+    console.log(userInput)
     try {     
       await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${todo.uuid}`, {
-        name: userInput,
-        done: !complete 
+        done: complete 
       })
       getTodos()
     } catch (error) {
