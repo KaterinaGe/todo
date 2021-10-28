@@ -1,28 +1,24 @@
 import Edit from "./Edit"
 import { useState} from 'react'
+import 'antd/dist/antd.css';
+import { Checkbox, Button, Form } from 'antd'
 
 function Task({ todo, removeTask, completeTodo, editText }) {
     const [edit, setEdit] = useState(false)
 
     return (
-        <div  className="task">
-            <span>
-                <label>
-                    <input className="check" type="checkbox" todo={todo} onChange={ () => completeTodo(todo, todo.done, !todo.done) } checked={ todo.done }/>
-                    <span></span>
-                    <label></label>
-                </label>
-            </span>
-            <p className="todo" onDoubleClick={() => setEdit(true)}>
+        <Form className="task">
+            <Checkbox className="check" todo={todo} onChange={ () => completeTodo(todo, todo.done, !todo.done) } checked={ todo.done }/>    
+            <div className="todo" onDoubleClick={() => setEdit(true)}>
                 {edit ? <Edit todo={todo} defaultValue={todo.name} setEdit={setEdit} editText={editText} /> : todo.name}
-            </p>
+            </div>
             <div>
                 {todo.createdAt.slice(0, 10)}
             </div>
-            <button className="remove" onClick={() => removeTask(todo.uuid)}>
+            <Button className="remove" onClick={() => removeTask(todo.uuid)}>
                 X
-            </button>
-        </div>
+            </Button>
+        </Form>
     )
 }
 

@@ -1,6 +1,8 @@
 import {useState} from 'react'
+import 'antd/dist/antd.css';
+import { Input, Button } from 'antd'
 
-function Input({ addTask }) {
+function Add({ addTask, filteredTodos }) {
     const [userInput, setUserInput] = useState('')
 
     const handleChange = (e) => {                
@@ -15,20 +17,28 @@ function Input({ addTask }) {
         setUserInput("")
     }
 
+    const keyPress = (e) => {
+        if(e.key === "Enter") {
+            handleSubmit(e)
+        }
+    }
+
     return (
-        <form className="enter" onSubmit={(e) => handleSubmit(e)}>
-            <input 
+        <section  className="enter" onSubmit={(e) => handleSubmit(e)}>
+            <p className="sum">{filteredTodos.length} tasks</p>
+            <Input 
                 value={userInput}
                 type="text"
+                onKeyPress={keyPress}
                 onChange={handleChange}
                 placeholder="I want to..."
                 className="input"
                 autoFocus
                 ref={input => input && input.focus()}
             /> 
-            <button className="save">Save</button>
-        </form>
+            <Button onClick={(e)=> handleSubmit(e)} className="save">Add</Button>
+        </section>
     )
 }
 
-export default Input;
+export default Add;

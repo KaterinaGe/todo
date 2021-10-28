@@ -1,10 +1,13 @@
+import 'antd/dist/antd.css';
+import { Card } from 'antd'
+
+
 function Error ({error, errorWindow, message}) {
     if (!error) return null
     return (
-        <div className="error" onClick={errorWindow}>
-            <h1 className="title"> Error! </h1>
-            <div className="message"> {message} </div>
-        </div>
+        <Card title="Error!" className="error" onClick={errorWindow}>
+            {message}
+        </Card>
     )    
 }
 

@@ -1,11 +1,13 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import Task from "./Task";
-import Input from "./Input";
+import Add from "./Add";
 import Filter from "./Filter"
 import Pages from "./Pages";
 import Error from "./Error";
 import axios from "axios";
+
+import 'antd/dist/antd.css';
 
 
 function App() {
@@ -67,11 +69,10 @@ function App() {
     }
   }
 
-  const completeTodo = async (todo, userInput, complete ) => {
-    console.log(userInput)
+  const completeTodo = async (todo, complete ) => {
     try {     
       await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${todo.uuid}`, {
-        done: complete 
+        done: !complete 
       })
       getTodos()
     } catch (error) {
@@ -120,11 +121,12 @@ function App() {
     <div className="app">
       <header>
         <h1 className="h1">ToDo</h1>
-      </header>
-      <div className="add">
-        <p className="sum">{filteredTodos.length} tasks</p>
-        <Input addTask={addTask}/>
-      </div>
+      </header>       
+      <Add 
+        className="add" 
+        addTask={addTask}
+        filteredTodos={filteredTodos}
+      />
       <Filter
         setOrder={setOrder}
         setFilterBy={setFilterBy}

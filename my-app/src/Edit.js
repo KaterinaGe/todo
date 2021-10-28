@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import 'antd/dist/antd.css';
 
 function Edit({ editText, setEdit, todo }) {
     const [userEdit, setUserEdit] = useState(todo.name)

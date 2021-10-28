@@ -1,3 +1,6 @@
+import 'antd/dist/antd.css';
+import { Button, Form } from 'antd'
+
 function Pages ({TASK_PER_PAGE, total, paginate, prevPage, nextPage, currentPage}) {
     const pageNumber = []
 
@@ -6,8 +9,8 @@ function Pages ({TASK_PER_PAGE, total, paginate, prevPage, nextPage, currentPage
     }
 
     return (
-        <div className="pages">
-            <button className="prevPage" onClick={prevPage}> {'<<'} </button>
+        <Form className="pages">
+            <Button className="prevPage" onClick={prevPage}> {'<<'} </Button>
             <ul className="pagination">
                 {pageNumber.map(number => (
                     <li key={number}>
@@ -19,8 +22,8 @@ function Pages ({TASK_PER_PAGE, total, paginate, prevPage, nextPage, currentPage
                     </li>
                 ))}
             </ul>
-            <button className="nextPage" onClick={nextPage}> {'>>'} </button>
-        </div>
+            <Button className="nextPage" onClick={nextPage}> {'>>'} </Button>
+        </Form>
     )
     
 }

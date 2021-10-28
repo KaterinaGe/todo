@@ -1,16 +1,21 @@
+import 'antd/dist/antd.css';
+import { Radio } from 'antd'
+
 function Filter ({filterBy, order, setFilterBy, setOrder }) {
     return (
         <div className="buttons"> 
-            <button onClick={() => setFilterBy('')} className={filterBy === '' ? "statusSelected" : "status"}>All</button>
-            <button onClick={() => setFilterBy('done')} className={filterBy === 'done' ? "statusSelected" : "status"}>Done</button> 
-            <button onClick={() => setFilterBy('undone')} className={filterBy === 'undone' ? "statusSelected" : "status"}>Undone</button>       
-          
+            <Radio.Group value={filterBy} onClick={() => setFilterBy()}>
+                <Radio.Button value=''>All</Radio.Button>
+                <Radio.Button value='done'>Done</Radio.Button> 
+                <Radio.Button value='undone'>Undone</Radio.Button>       
+            </Radio.Group>
             <p className="lettering">
                 Sort by date
             </p>
-
-            <button onClick={() => setOrder('asc')} value="sortDown" className ={order === 'asc' ? "arrowSelected" : "arrow"}> \/ </button>
-            <button onClick={() => setOrder('desc')} value="sortUp" className ={order === 'desc' ? "arrowSelected" : "arrow"}> /\ </button>
+            <Radio.Group value={order} onClick={() => setOrder()}>
+                <Radio.Button value='asc'> \/ </Radio.Button>
+                <Radio.Button value='desc'> /\ </Radio.Button>
+            </Radio.Group>
         </div>
     )
 }
