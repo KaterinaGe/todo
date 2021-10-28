@@ -199,7 +199,6 @@ ul.pagination {
 }
 
 .prevPage {
-  content: '\2714';
   margin-right: 10px;
   background-color: white;
   cursor: pointer;

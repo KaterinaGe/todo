@@ -6,7 +6,6 @@ import Filter from "./Filter"
 import Pages from "./Pages";
 import Error from "./Error";
 import axios from "axios";
-
 import 'antd/dist/antd.css';
 
 
@@ -19,7 +18,8 @@ function App() {
   const [error, setError] = useState(false)
   const [message, setMessage] = useState('')
 
-  useEffect (() => {
+
+  useEffect (() => { 
     getTodos()
   }, [ order, filterBy ])
     
@@ -33,7 +33,6 @@ function App() {
       setError(true)
       setTimeout(() => setError(false), 5000)
     }
-    
   }
 
   const addTask = async (userInput) => {
@@ -52,7 +51,6 @@ function App() {
       setError(true)
       setTimeout(() => setError(false), 5000)
     }
-    
   }
 
   const editText = async (id, userEdit, complete) => {
