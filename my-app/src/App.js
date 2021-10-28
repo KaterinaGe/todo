@@ -9,14 +9,13 @@ import axios from "axios";
 
 
 function App() {
-  const [todos, setTodos] = useState([])
   const [filteredTodos, setFilteredTodos] = useState([])
   const [filterBy, setFilterBy] = useState('')
   const [order, setOrder] = useState('asc')
   const TASK_PER_PAGE = 5
   const [currentPage, setCurrentPage] = useState(1)
   const [error, setError] = useState(false)
-  const [message, setContent] = useState('')
+  const [message, setMessage] = useState('')
 
   useEffect (() => {
     getTodos()
@@ -26,10 +25,9 @@ function App() {
     try {
       setCurrentPage(1)
       const todo = await axios.get(`https://todo-api-learning.herokuapp.com/v1/tasks/2?filterBy=${filterBy}&order=${order}`)
-      setTodos(todo.data)
       setFilteredTodos(todo.data)
     } catch (error) {
-      setContent(error.response.data.message)
+      setMessage(error.response.data.message)
       setError(true)
       setTimeout(() => setError(false), 5000)
     }
@@ -48,7 +46,7 @@ function App() {
         getTodos()
       }
     } catch(error) {
-      setContent(error.response.data.message)
+      setMessage(error.response.data.message)
       setError(true)
       setTimeout(() => setError(false), 5000)
     }
@@ -56,42 +54,30 @@ function App() {
   }
 
   const editText = async (id, userEdit, complete) => {
+    console.log(complete)
     try{
       await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`, {
         name: userEdit,
         done: complete
       })
-      setTodos(
-        todos.map(todo => {
-          if (todo.uuid === id) {
-            todo.name = userEdit
-          }
-          return todo
-        })
-      )
+      getTodos()
     } catch(error) {
-      setContent(error.response.data.message)
+      setMessage(error.response.data.message)
       setError(true)
       setTimeout(() => setError(false), 5000)
     }
   }
 
-  const completeTodo = async (id, userEdit, complete) => {
-    try {
-      await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`, {
-        name: userEdit,
-        done: !complete
+  const completeTodo = async (todo, userInput, complete ) => {
+    console.log(complete)
+    try {     
+      await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${todo.uuid}`, {
+        name: userInput,
+        done: !complete 
       })
-      setTodos(
-        todos.map(todo => {
-          if (todo.uuid === id) {
-            todo.done = !todo.done
-          }
-          return todo
-        })
-      )
+      getTodos()
     } catch (error) {
-      setContent(error.response.data.message)
+      setMessage(error.response.data.message)
       setError(true)
       setTimeout(() => setError(false), 5000)
     } 
@@ -107,7 +93,7 @@ function App() {
         }
       }
     } catch(error) {
-      setContent(error.response.data.message)
+      setMessage(error.response.data.message)
       setError(true)
       setTimeout(() => setError(false), 5000)
     }
@@ -147,11 +133,12 @@ function App() {
         filterBy={filterBy}
         order={order}
       />
-      {currentPageTodo.map((todo) => {
+      {currentPageTodo.map((todo, uuid) => {
         return (
           <Task
             completeTodo={completeTodo}
             todo={todo}
+            key={uuid}
             removeTask={removeTask}
             className="tasks"
             editText={editText}
