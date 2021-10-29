@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+*{
+  font-family: 'Architects Daughter', cursive;
+  color: rgb(82, 82, 92);
+  font-size: 20px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.h1 {
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 50px;
+  color: rgb(82, 82, 92);
+}
+
+.sum {
+  width: 200px;
+  padding-top: 20px;
+}
+
+.enter{
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  display: flex;
+  cursor: pointer;
+  box-shadow: 10px 10px 3px 1px rgb(201, 201, 201)
+}
+
+.save {
+  margin-left: 15px;
+  background-color: white;
+  cursor: pointer;
+  box-shadow: 10px 10px 3px 1px rgb(201, 201, 201) !important
+}
+
+.ant-radio-group {
+  height: 30px !important;
+  background: white !important;
+  box-shadow: 10px 10px 3px 1px rgb(201, 201, 201) !important
+}
+
+.buttons {
+  display: flex;
+}
+
+.lettering {
+  margin-top: 10px;
+  margin-left: 80px;
+  margin-right: 10px;
+  height: 30px;
+}
+
+.task {
+  background-color: white;
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgb(209, 209, 209);
+  box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
+}
+
+.ant-checkbox-wrapper {
+  margin-top: 4px !important;
+  margin-left: 5px !important;
+}
+
+.ant-form {
+  margin: 10px !important;
+}
+
+.todo:hover {
+  background: rgb(209, 209, 209);
+}
+
+.ant-btn.remove {
+  border: 0 !important;
+  background-color: white;
+  cursor: pointer;
+}
+
+.ant-btn > span {
+  margin-top: -2px;
+}
+
+.pages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+ul.pagination {
+  margin: 0;
+  padding: 0;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style-type: none; 
+}
+
+.page:hover {
+  background: rgb(209, 209, 209);
+} 
+
+.page {
+  display: inline-block;
+  border: 1px solid rgb(150, 150, 150);
+  height: 50px;
+  width: 35px;
+  font-size: 40px;
+  text-decoration: none;
+  box-shadow: 3px 3px 3px 1px rgb(201, 201, 201);
+  margin-right: 5px;
+  margin-left: 5px;
+  text-align: center;
+}
+
+.pageSelected {
+  display: inline-block;
+  border: 1px solid rgb(150, 150, 150);
+  background: rgb(209, 209, 209);
+  height: 50px;
+  width: 35px;
+  font-size: 40px;
+  text-decoration: none;
+  box-shadow: 3px 3px 3px 1px rgb(201, 201, 201);
+  margin-right: 5px;
+  margin-left: 5px;
+  text-align: center;
+}
+
+.prevPage {
+  margin-right: 10px;
+  background-color: white;
+  cursor: pointer;
+  box-shadow: 3px 3px 3px 1px rgb(201, 201, 201) !important;
+}
+
+.prevPage:hover {
+  background: rgb(209, 209, 209);
+}
+
+.nextPage {
+  margin-left: 10px;
+  background-color: white;
+  cursor: pointer;
+  box-shadow: 3px 3px 3px 1px rgb(201, 201, 201) !important;
+}
+
+.nextPage:hover {
+  background: rgb(209, 209, 209);
+}
+
+.ant-card{
+  position: absolute !important;
+}
+
+.error{
+  flex-direction: column;
+  top: 10px;
+  left: 10px;
+  width: 300px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  animation-fill-mode: both;
+  justify-content: center;
+  animation-name: fadeInDown;
+  animation-duration: 300ms;
+  box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
+}
+
+@keyframes fadeInDown { 
+  0% {             
+      opacity: 0;
+      transform: translate3d(0px, -100%, 0px);
+  }
+  100% {       
+      opacity: 1;
+      transform: none;
+  }
+}
+
+.message{
+  margin: 5px;
+}
