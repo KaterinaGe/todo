@@ -19,12 +19,6 @@
   color: rgb(82, 82, 92);
 }
 
-.add{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .sum {
   width: 200px;
   padding-top: 20px;
@@ -42,35 +36,20 @@
 }
 
 .save {
-  margin-left: 10px;
+  margin-left: 15px;
   background-color: white;
   cursor: pointer;
-  box-shadow: 10px 10px 3px 1px rgb(201, 201, 201)
+  box-shadow: 10px 10px 3px 1px rgb(201, 201, 201) !important
 }
 
-.save:hover {
-  background: rgb(209, 209, 209);
+.ant-radio-group {
+  height: 30px !important;
+  background: white !important;
+  box-shadow: 10px 10px 3px 1px rgb(201, 201, 201) !important
 }
 
 .buttons {
   display: flex;
-  border-color: none;
-}
-
-.status-bth {
-  height: 40px;
-  margin-right: 10px;
-  background-color: white;
-  cursor: pointer;
-  box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
-}
-
-.statusSelected-btn {
-  height: 40px;
-  margin-right: 10px;
-  background: rgb(209, 209, 209);
-  cursor: pointer;
-  box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
 }
 
 .lettering {
@@ -80,71 +59,36 @@
   height: 30px;
 }
 
-.arrow-btn {
-  height: 40px;
-  margin-left: 10px;
-  background-color: white;
-  cursor: pointer;
-  box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
-}
-
-.arrowSelected-btn {
-  height: 40px;
-  margin-left: 10px;
-  background-color: rgb(209, 209, 209);
-  cursor: pointer;
-  box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
-}
-
-.todo-list {
-  padding-left: 0;
-}
-
-.ant-form {
-  padding-top: 10px;
-  margin: 10px;
-}
-
 .task {
   background-color: white;
   width: 500px;
   display: flex;
   justify-content: space-between;
   border: 1px solid rgb(209, 209, 209);
-  padding-top: 10px;
-  padding-bottom: 10px;
   box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
 }
 
-.todo {
-  margin: 0;
-  overflow: hidden;
-  cursor: pointer;
+.ant-checkbox-wrapper {
+  margin-top: 4px !important;
+  margin-left: 5px !important;
+}
+
+.ant-form {
+  margin: 10px !important;
 }
 
 .todo:hover {
   background: rgb(209, 209, 209);
-} 
-
-.tasks {
-  margin-top: 10px;
 }
 
-.text {
-  margin-left: -150px;
-  margin-top: 10px;
-  z-index: -1;
-}
-
-.date {
-  margin-right: -150px;
-  margin-top: 10px;
-}
-
-.remove-btn {
-  border: 1px solid white;
+.ant-btn.remove {
+  border: 0 !important;
   background-color: white;
   cursor: pointer;
+}
+
+.ant-btn > span {
+  margin-top: -2px;
 }
 
 .pages {
@@ -168,14 +112,13 @@ ul.pagination {
 
 .page:hover {
   background: rgb(209, 209, 209);
-  margin-bottom: 3px;
 } 
 
 .page {
   display: inline-block;
   border: 1px solid rgb(150, 150, 150);
   height: 50px;
-  width: 30px;
+  width: 35px;
   font-size: 40px;
   text-decoration: none;
   box-shadow: 3px 3px 3px 1px rgb(201, 201, 201);
@@ -189,7 +132,7 @@ ul.pagination {
   border: 1px solid rgb(150, 150, 150);
   background: rgb(209, 209, 209);
   height: 50px;
-  width: 30px;
+  width: 35px;
   font-size: 40px;
   text-decoration: none;
   box-shadow: 3px 3px 3px 1px rgb(201, 201, 201);
@@ -202,7 +145,7 @@ ul.pagination {
   margin-right: 10px;
   background-color: white;
   cursor: pointer;
-  box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
+  box-shadow: 3px 3px 3px 1px rgb(201, 201, 201) !important;
 }
 
 .prevPage:hover {
@@ -213,17 +156,19 @@ ul.pagination {
   margin-left: 10px;
   background-color: white;
   cursor: pointer;
-  box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
+  box-shadow: 3px 3px 3px 1px rgb(201, 201, 201) !important;
 }
 
 .nextPage:hover {
   background: rgb(209, 209, 209);
 }
 
+.ant-card{
+  position: absolute !important;
+}
+
 .error{
-  background-color: white;
   flex-direction: column;
-  position: absolute;
   top: 10px;
   left: 10px;
   width: 300px;
@@ -234,7 +179,6 @@ ul.pagination {
   justify-content: center;
   animation-name: fadeInDown;
   animation-duration: 300ms;
-  border: 1px solid;
   box-shadow: 5px 5px 3px 1px rgb(201, 201, 201)
 }
 
