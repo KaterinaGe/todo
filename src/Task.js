@@ -13,7 +13,7 @@ function Task({ todo, removeTask, completeTodo, editText }) {
                 {edit ? <Edit todo={todo} defaultValue={todo.name} setEdit={setEdit} editText={editText} /> : todo.name}
             </div>
             <div>
-                {todo.createdAt.slice(0, 10)}
+                {todo.created_at.slice(4, 25)}
             </div>
             <Button className="remove" onClick={() => removeTask(todo.uuid)}>
                 X

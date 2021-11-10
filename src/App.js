@@ -26,10 +26,10 @@ function App() {
   const getTodos = async() => {
     try {
       setCurrentPage(1)
-      const todo = await axios.get(`https://todo-api-learning.herokuapp.com/v1/tasks/2?filterBy=${filterBy}&order=${order}`)
+      const todo = await axios.get(`http://localhost:5000/todos?filterBy=${filterBy}&order=${order}`)
       setFilteredTodos(todo.data)
     } catch (error) {
-      setMessage(error.response.data.message)
+      setMessage(error.message)
       setError(true)
       setTimeout(() => setError(false), 5000)
     }
@@ -40,14 +40,14 @@ function App() {
       setFilterBy('all')
       setOrder('sortDown')
       if (userInput) {
-        await axios.post('https://todo-api-learning.herokuapp.com/v1/task/2', {
+        await axios.post('http://localhost:5000/todo', {
           name: userInput,
           done: false
         })
         getTodos()
       }
     } catch(error) {
-      setMessage(error.response.data.message)
+      setMessage(error.message)
       setError(true)
       setTimeout(() => setError(false), 5000)
     }
@@ -55,13 +55,13 @@ function App() {
 
   const editText = async (id, userEdit, complete) => {
     try{
-      await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`, {
+      await axios.put(`http://localhost:5000/todo/${id}`, {
         name: userEdit,
         done: complete
       })
       getTodos()
     } catch(error) {
-      setMessage(error.response.data.message)
+      setMessage(error.message)
       setError(true)
       setTimeout(() => setError(false), 5000)
     }
@@ -69,12 +69,13 @@ function App() {
 
   const completeTodo = async (todo, complete ) => {
     try {     
-      await axios.patch(`https://todo-api-learning.herokuapp.com/v1/task/2/${todo.uuid}`, {
+      await axios.put(`http://localhost:5000/todo/${todo.uuid}`, {
+        name: todo.name,
         done: !complete 
       })
       getTodos()
     } catch (error) {
-      setMessage(error.response.data.message)
+      setMessage(error.message)
       setError(true)
       setTimeout(() => setError(false), 5000)
     } 
@@ -82,7 +83,7 @@ function App() {
 
   const removeTask = async (id) => {
     try {
-      await axios.delete(`https://todo-api-learning.herokuapp.com/v1/task/2/${id}`)
+      await axios.delete(`http://localhost:5000/todo/${id}`)
       setFilteredTodos(filteredTodos.filter(todo => todo.uuid !== id))
       if (currentPageTodo.length === 1) {
         if (currentPage !== 1) {
@@ -90,7 +91,7 @@ function App() {
         }
       }
     } catch(error) {
-      setMessage(error.response.data.message)
+      setMessage(error.message)
       setError(true)
       setTimeout(() => setError(false), 5000)
     }
